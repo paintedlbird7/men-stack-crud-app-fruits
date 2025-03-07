@@ -9,3 +9,5 @@ const fruitSchema = new mongoose.Schema({
 const Fruit = mongoose.model("Fruit", fruitSchema); // create model
 
 module.exports = Fruit;
+// this module eports teh fruit model
+// fruit model provides us with full crud functionality over our fruits collection in the fruits-app database
