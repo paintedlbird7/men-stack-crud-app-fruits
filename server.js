@@ -10,6 +10,8 @@ const methodOverride = require("method-override");
 const morgan = require("morgan");
 const path = require("path");
 
+app.use(express.static(path.join(__dirname, "public")));
+
 
 // Connect to MongoDB using the connection string in the .env file
 mongoose.connect(process.env.MONGODB_URI);
@@ -26,6 +28,7 @@ const Fruit = require("./models/fruit.js");
   // form data // Mount it along with our other middleware, ABOVE the routes
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method")); 
+// method override reads the "_method" query param for DELETE or PUT requests
 app.use(morgan("dev"));
 
 app.use(express.static(path.join(__dirname, "public")));
@@ -92,8 +95,6 @@ app.get("/fruits/:fruitId/edit", async (req, res) => {
     fruit: foundFruit,
   });
 });
-
-// server.js
 
 app.put("/fruits/:fruitId", async (req, res) => {
   console.log('Updated fruit data:', req.body);

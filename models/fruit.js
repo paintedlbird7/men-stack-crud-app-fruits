@@ -1,4 +1,5 @@
 // models/fruit.js
+// Define your schema
 
 const mongoose = require('mongoose');
 

@@ -2,25 +2,34 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   <link rel="stylesheet" href="/stylesheets/style.css" />
-    <title>Fruits Index</title>
-  </head>
-  <body>
-    <h1>All Fruits</h1>
-    <nav><ul><li><a href="/fruits">Browse Fruits</a></li>
-        <li><a href="/fruits/new">Add New Fruit</a></li></ul></nav>
 
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+  <title>Fruits Index</title>
+</head>
 
+<body>
+  <h1>All Fruits</h1>
+  <nav>
     <ul>
-        <% fruits.forEach(fruit => { %>
-            </li><a href="/fruits/<%= fruit._id %>"> <%= fruit.name %> </a></li>
-            <% }); %>
+      <li><a href="/fruits">Browse Fruits</a></li>
+      <!-- <li><a href="/fruits/new">Add New Fruit</a></li></ul></nav> -->
+      <a class="add-fruit" href="/fruits/new">Add fruit</a>
+
+      <ul>
+        <% fruits.forEach(fruit=> { %>
+          </li>
+          <a href="/fruits/<%= fruit._id %>">
+            <%= fruit.name %>
+          </a>
+          </li>
+
+          <% }); %>
       </ul>
 
-  </body>
-  <footer>Icons by <a href="https://www.flaticon.com/authors/freepik">Freekpik</a></footer>
+</body>
+<footer>Icons by <a href="https://www.flaticon.com/authors/freepik">Freekpik</a></footer>
 
 </html>
