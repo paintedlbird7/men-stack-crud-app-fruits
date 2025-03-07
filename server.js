@@ -9,7 +9,7 @@ const mongoose = require("mongoose"); // require package
 const methodOverride = require("method-override");
 const morgan = require("morgan");
 const path = require("path");
-
+// static assets middleware - used to sent static assets 9CSS, Imgs and DOM malipulation JS) to the client
 app.use(express.static(path.join(__dirname, "public")));
 
 
@@ -89,8 +89,12 @@ app.delete("/fruits/:fruitId", async (req, res) => {
 }); 
 
 // GET localhost:3000/fruits/:fruitId/edit
+// used to send a page to the client with an edit form pre-filled out with fruit details
+// so the user can edit the fruit and submit the form
 app.get("/fruits/:fruitId/edit", async (req, res) => {
+  //1. look up the fruit by its id
   const foundFruit = await Fruit.findById(req.params.fruitId);
+  // 2. respond with a "edit" template with an edit form
   res.render("fruits/edit.ejs", {
     fruit: foundFruit,
   });
@@ -103,11 +107,11 @@ app.put("/fruits/:fruitId", async (req, res) => {
     req.body.isReadyToEat = true;
   } else {
     req.body.isReadyToEat = false;
-  }
-  
-  // Update the fruit in the database
+  }  
+  // Update the fruit in the database, used to capture edit 
+  // submissions from the client and send updates to MondoDB
   // await Fruit.findByIdAndUpdate(req.params.fruitId, req.body);
-  const updatedFruit = await Fruit.findByIdAndUpdate(req.params.fruitId, req.body, { new: true });
+const updatedFruit = await Fruit.findByIdAndUpdate(req.params.fruitId, req.body, { new: true });
 console.log('Updated fruit:', updatedFruit);
 
 
