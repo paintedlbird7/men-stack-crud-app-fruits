@@ -33,7 +33,6 @@ app.use(morgan("dev"));
 
 app.use(express.static(path.join(__dirname, "public")));
 
-
 // GET /
 app.get("/", async (req, res) => {
     res.render("index.ejs");
