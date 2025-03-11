@@ -9,6 +9,8 @@ const mongoose = require("mongoose"); // require package
 const methodOverride = require("method-override");
 const morgan = require("morgan");
 const path = require("path");
+const authController = require("./controllers/auth.js");
+
 // static assets middleware - used to sent static assets 9CSS, Imgs and DOM malipulation JS) to the client
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -37,6 +39,8 @@ app.use(express.static(path.join(__dirname, "public")));
 app.get("/", async (req, res) => {
     res.render("index.ejs");
 });
+
+app.use("/auth", authController);
 
 // GET /fruits index route sends a page that lists all fruits from the database
 app.get("/fruits", async (req, res) => {

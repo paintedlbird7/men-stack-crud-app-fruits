@@ -1,14 +1,26 @@
-// models/fruit.js
-// Define your schema
+const mongoose = require("mongoose");
 
-const mongoose = require('mongoose');
+// User Schema
+const userSchema = new mongoose.Schema({
+  username: {
+    type: String,
+    required: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+});
 
+const User = mongoose.model("User", userSchema);
+
+// Fruit Schema
 const fruitSchema = new mongoose.Schema({
   name: String,
   isReadyToEat: Boolean,
 });
+
 const Fruit = mongoose.model("Fruit", fruitSchema); // create model
 
-module.exports = Fruit;
-// this module eports teh fruit model
-// fruit model provides us with full crud functionality over our fruits collection in the fruits-app database
+// Export both models
+module.exports = { User, Fruit };
